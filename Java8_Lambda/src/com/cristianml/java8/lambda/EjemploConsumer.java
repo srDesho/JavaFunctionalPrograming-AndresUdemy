@@ -8,6 +8,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.function.BiConsumer;
 import java.util.function.Consumer;
+import java.util.function.Supplier;
 
 public class EjemploConsumer {
 
@@ -43,9 +44,11 @@ public class EjemploConsumer {
         List<String> nombres = Arrays.asList("Melsi", "Daniel", "Godoy", "Calebsin");
         nombres.forEach(consumidor2);
 
+        // Creamos un supplier para retornar un nuevo usuario
+        Supplier<UsuarioModel> creaUsuario = UsuarioModel::new; // los 2 puntos es referencia de método
+        UsuarioModel usuario = creaUsuario.get();
 
         // Ejemplo de un BiConsumer con método de referencia
-        UsuarioModel usuario = new UsuarioModel();
         // Esto es normal
         /*BiConsumer<UsuarioModel, String> asignarNombre = (persona, nombre) -> {
             persona.setNombre(nombre);
@@ -58,5 +61,15 @@ public class EjemploConsumer {
 
         asignarNombre.accept(usuario, "Diogo");
         System.out.println("Nombre de usuario: " + usuario.getNombre());
+
+        // Expresión Lambda con Supplier (proveedor) no recibe ningún argumento y devuelve un valor o sea que siempre
+        // hay un return es su definición.
+        /*Supplier<String> proveedor = () -> {
+            return "Expresión lambda supplier.";
+        };*/
+
+        // simplificado porque se puede hacer cuando solo es una sola instrucción, una línea.
+        Supplier<String> proveedor = () -> "expresión lambda supplier.";
+        System.out.println(proveedor.get());
     }
 }
