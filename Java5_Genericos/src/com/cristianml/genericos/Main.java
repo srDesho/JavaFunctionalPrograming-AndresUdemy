@@ -1,10 +1,12 @@
 package com.cristianml.genericos;
 
 import com.cristianml.genericos.model.Cliente;
+import com.cristianml.genericos.model.ClientePremium;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.lang.Integer;
 
 public class Main {
     public static void main(String[] args) {
@@ -47,9 +49,34 @@ public class Main {
                 "Pepe"}, enterosArreglo); // El segundo argumento es el que solo se va a imprimir en pantalla.
 
         nombres.forEach(System.out::println);
+
+        // Creamos otra lista pero con el model ClientePremium
+        List<ClientePremium> clientePremiumList = fromArrayToList(new ClientePremium[]{
+                new ClientePremium("Mario", "Arce"),
+                new ClientePremium("Pedro", "Pérez"),
+                new ClientePremium("Mariano", "Molina")
+        });
+        clientePremiumList.forEach(System.out::println);
     }
     // Con los genéricos podemos hacer que los argumentos sean de cualquier tipo en una función
     public static <T> List<T> fromArrayToList(T[] c) {
+        return Arrays.asList(c);
+    }
+
+    // Hacemos una sobrecarga para hacer una limitación de tipo de dato para el genérico, en este caso solo vamos a
+    // permitir que sea de tipo numérico, extendemos de la clase abstracta Number.
+    public static <T extends Number> List<T>fromArrayToList(T[] c) {
+        return Arrays.asList(c);
+    }
+
+    // Ejemplo con otra sobrecarga donde permitiremos solo objetos Cliente.
+    /*public static <T extends Cliente> List<T> fromArrayToList(T[] c) {
+        return Arrays.asList(c);
+    }*/
+
+    // También podemos ser mucho más específicos con el límite, o sea limitar mucho más, esto podemos hacerlo
+    // implementando interfaces como el siguiente ejemplo, lo hacemos con un ampersand(&)
+    public static <T extends Cliente & Comparable<T>> List<T> fromArrayToList(T[] c) {
         return Arrays.asList(c);
     }
 
