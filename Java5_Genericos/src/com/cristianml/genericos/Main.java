@@ -57,7 +57,17 @@ public class Main {
                 new ClientePremium("Mariano", "Molina")
         });
         clientePremiumList.forEach(System.out::println);
+
+        // Ejemplo para comodines
+        imprimirClientes(clientes);
+        imprimirClientes(clientesLista);
+        // Vemos que no podemos imprimir objetos hijos y para esto son necesarios los comodines.
+        // No se puede imprimir porque una Lista de una clase hija no es hija de una lista de una clase padre.
+        // Para poder imprimir debemos agregar el comodín que es representado por un signo "?"
+        // de la siguiente manera: public static void imprimirClientes(List<? extends Cliente> c)
+        imprimirClientes(clientePremiumList);
     }
+
     // Con los genéricos podemos hacer que los argumentos sean de cualquier tipo en una función
     public static <T> List<T> fromArrayToList(T[] c) {
         return Arrays.asList(c);
@@ -88,5 +98,11 @@ public class Main {
             System.out.println(elemento);
         }
         return Arrays.asList(c);
+    }
+
+    // Comodines(Wildcards) sólo se pueden utilizar en listas
+    // Para agregar el comodín lo hacemos de la siguiente manera: (List<? extends Cliente> c)
+    public static void imprimirClientes(List<? extends Cliente> c) {
+        c.forEach(System.out::println);
     }
 }
