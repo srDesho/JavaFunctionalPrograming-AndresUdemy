@@ -18,7 +18,7 @@ public class Main {
         // Reusabilidad: Permiten escribir código más general y reutilizable.
         // Legibilidad y Mantenimiento: Hacen que el código sea más claro y fácil de mantener.
 
-        // Ejemplo si uso de genéricos:
+        // Ejemplo sin uso de genéricos:
         /*List clientes = new ArrayList();
         clientes.add(new Cliente("Cristian", "Montaño"));
 
@@ -64,8 +64,15 @@ public class Main {
         // Vemos que no podemos imprimir objetos hijos y para esto son necesarios los comodines.
         // No se puede imprimir porque una Lista de una clase hija no es hija de una lista de una clase padre.
         // Para poder imprimir debemos agregar el comodín que es representado por un signo "?"
-        // de la siguiente manera: public static void imprimirClientes(List<? extends Cliente> c)
+        // De la siguiente manera: public static void imprimirClientes(List<? extends Cliente> c)
         imprimirClientes(clientePremiumList);
+
+        // Ejemplo para el método que calcula el mayor de 3 objetos
+        System.out.println("Máximo de 5, 4 y 10 es: " + maximo(5,4,10));
+        System.out.println("Máximo de 8.5, 2.4 y 3.8 es: " + maximo(8.5,2.4,3.8));
+        System.out.println("Máximo de Mariana, Camila y Zamira es: " + maximo(
+                "Mariana" , "Camila", "Zamira"
+        ));
     }
 
     // Con los genéricos podemos hacer que los argumentos sean de cualquier tipo en una función
@@ -105,4 +112,20 @@ public class Main {
     public static void imprimirClientes(List<? extends Cliente> c) {
         c.forEach(System.out::println);
     }
+
+    // Método para calcular el mayor de 3 objetos haciendo uso de la interfaz Comparable
+    // la palabra reservada extends no es solo para definir clases hijas, sino que también se puede hacer uso
+    // haciendo referencias que se va a extender de una Interfaz como Comparable.
+    public static <T extends Comparable<T>> T maximo(T a, T b, T c) {
+        T max = a;
+        if (b.compareTo(max) > 0) {
+            max = b;
+        }
+
+        if (c.compareTo(max) > 0) {
+            max = c;
+        }
+        return max;
+    }
+
 }
