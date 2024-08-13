@@ -1,4 +1,4 @@
-package com.cristianml.genericos.clasesgenericas;
+package com.cristianml.clasesgenericas;
 
 public class Animal {
 

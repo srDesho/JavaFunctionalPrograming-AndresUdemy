@@ -1,4 +1,4 @@
-package com.cristianml.genericos.clasesgenericas;
+package com.cristianml.clasesgenericas;
 
 import java.util.ArrayList;
 import java.util.Iterator;
