@@ -5,7 +5,7 @@ import java.util.List;
 
 public class BolsaSupermercado<T> {
 
-    private List<T> productList;
+    private List<T> productos;
     private int productMax = 5;
 
     public BolsaSupermercado() {
@@ -13,7 +13,7 @@ public class BolsaSupermercado<T> {
     }
 
     // add products
-    public void addProduct(T product) {
+    public void addProducto(T product) {
         if(this.productList.size() < productMax) {
             productList.add(product);
         } else {
@@ -22,7 +22,7 @@ public class BolsaSupermercado<T> {
     }
 
     // getProductList
-    public List<T> getProductList() {
-        return productList;
+    public List<T> getProductos() {
+        return productos;
     }
 }
