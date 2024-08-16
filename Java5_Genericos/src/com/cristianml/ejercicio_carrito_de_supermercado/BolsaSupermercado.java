@@ -9,13 +9,13 @@ public class BolsaSupermercado<T> {
     private int productMax = 5;
 
     public BolsaSupermercado() {
-        productList = new ArrayList<>();
+        productos = new ArrayList<>();
     }
 
     // add products
     public void addProducto(T product) {
-        if(this.productList.size() < productMax) {
-            productList.add(product);
+        if(this.productos.size() < productMax) {
+            productos.add(product);
         } else {
             throw new RuntimeException("There is no more space.");
         }
